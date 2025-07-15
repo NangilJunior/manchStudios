@@ -1055,17 +1055,16 @@
             const phone = document.getElementById('phone').value;
             const message = document.getElementById('message').value;
             
-            // Create email content
-            const subject = 'Novo contato via site - Manch Studios';
-            const body = `Telefone: ${phone}%0D%0A%0D%0AMensagem:%0D%0A${encodeURIComponent(message)}`;
-            const emailLink = `mailto:contato@manchstudios.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+            // Create SMS content
+            const smsMessage = `Olá! Entrei em contato através do site da Manch Studios.%0D%0A%0D%0AMeu telefone: ${phone}%0D%0A%0D%0AMensagem: ${encodeURIComponent(message)}`;
+            const smsLink = `sms:+5531994341699?body=${smsMessage}`;
             
-            // Open email client
-            window.location.href = emailLink;
+            // Open SMS app
+            window.location.href = smsLink;
             
             // Close modal and show success message
             closeContactModal();
-            alert('Obrigado pelo contato! Seu cliente de email foi aberto para enviar a mensagem.');
+            alert('Obrigado pelo contato! Seu aplicativo de SMS foi aberto para enviar a mensagem.');
         });
 
         // Carousel Functionality
