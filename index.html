@@ -243,7 +243,125 @@
         }
         
         .hero-bg {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            position: relative;
+            background-image: url('assets/jQZjCfb8CrwrG21G7r7Ba.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        
+        .hero-bg::before,
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            transition: opacity 2s ease-in-out;
+        }
+        
+        /* Fix para dispositivos móveis - manter parallax mas com fallback */
+        @media (max-width: 768px) {
+            .hero-bg {
+                min-height: 100vh;
+                /* Fallback para mobile que não suporta fixed */
+                background-attachment: scroll;
+            }
+            
+            .hero-bg::before,
+            .hero-bg::after {
+                background-attachment: scroll;
+            }
+            
+            /* Dispositivos que suportam fixed em mobile */
+            @supports (background-attachment: fixed) {
+                .hero-bg {
+                    background-attachment: fixed;
+                }
+                
+                .hero-bg::before,
+                .hero-bg::after {
+                    background-attachment: fixed;
+                }
+            }
+        }
+        
+        .hero-bg::before {
+            background-image: url('assets/t9wg24PUHk-cB8CPJay83.png');
+            z-index: 2;
+            animation: layer2Animation 45s infinite;
+        }
+        
+        .hero-bg::after {
+            background-image: url('assets/ugbpUgP2mxiSwfBj2oExO.jpeg');
+            z-index: 3;
+            animation: layer3Animation 45s infinite;
+        }
+        
+        @keyframes layer2Animation {
+            0%, 28% { opacity: 0; }
+            33%, 61% { opacity: 1; }
+            66%, 100% { opacity: 0; }
+        }
+        
+        @keyframes layer3Animation {
+            0%, 61% { opacity: 0; }
+            66%, 94% { opacity: 1; }
+            99%, 100% { opacity: 0; }
+        }
+        
+
+        
+        /* Overlay de degradê sobre toda a imagem de fundo */
+        .hero-gradient-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.3) 0%, 
+                rgba(255, 255, 255, 0.15) 40%, 
+                rgba(255, 255, 255, 0.05) 70%, 
+                rgba(255, 255, 255, 0) 100%);
+            z-index: 5;
+            pointer-events: none;
+        }
+        
+        /* Cores fixas para melhor legibilidade */
+        .hero-bg .text-adaptive {
+            color: #374151; /* Texto escuro fixo */
+        }
+        
+        .hero-bg .text-adaptive-secondary {
+            color: #9ca3af; /* Texto cinza fixo */
+        }
+        
+        .header-glass {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(40px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-glass::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.3) 0%, 
+                rgba(255, 255, 255, 0.1) 100%);
+            z-index: 1;
+            pointer-events: none;
         }
         
         .glass-effect {
@@ -336,6 +454,67 @@
             opacity: 1;
         }
         
+        /* Glassmorphism para menu mobile */
+        .mobile-menu-glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(54px);
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .mobile-menu-glass::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.4) 0%, 
+                rgba(255, 255, 255, 0.1) 100%);
+            z-index: -1;
+        }
+        
+        .glass-button-mobile {
+            background: transparent;
+            backdrop-filter: none;
+            border: none;
+            box-shadow: none;
+            z-index: 100;
+            position: relative;
+        }
+        
+        .glass-button-mobile:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.05);
+            box-shadow: none;
+        }
+        
+        .mobile-nav-container {
+            transition: all 0.3s ease;
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 2.5rem;
+            background: inherit;
+        }
+        
+        #mobileMenu {
+            background: #ffffff !important;
+            backdrop-filter: none !important;
+            border: none !important;
+            box-shadow: none !important;
+            width: 100vw !important;
+            height: 100vh !important;
+        }
+        
+
+
         @media (max-width: 768px) {
             .mobile-menu {
                 transform: translateX(-100%);
@@ -386,7 +565,7 @@
 </head>
 <body class="scroll-smooth overflow-x-hidden">
     <!-- Header -->
-    <header class="fixed top-0 w-full z-50 glass-effect">
+    <header class="fixed top-0 w-full z-50 header-glass">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <div class="flex items-center">
                 <img src="assets/hXlsJpJi6w14ITvaYS8nq.svg" alt="Manch Studios" class="h-8">
@@ -394,16 +573,16 @@
             
             <!-- Desktop Menu -->
             <nav class="hidden md:flex space-x-8">
-                <a href="#home" class="text-gray-700 hover:text-gray-900 transition">Home</a>
-                <a href="#about" class="text-gray-700 hover:text-gray-900 transition">Sobre</a>
-                <a href="#team" class="text-gray-700 hover:text-gray-900 transition">Equipe</a>
-                <a href="#services" class="text-gray-700 hover:text-gray-900 transition">Serviços</a>
-                <a href="#portfolio" class="text-gray-700 hover:text-gray-900 transition">Trabalhos</a>
-                <a href="#contact" class="text-gray-700 hover:text-gray-900 transition">Contato</a>
+                <a href="#home" class="text-gray-800 hover:text-gray-900 transition font-medium">Home</a>
+                <a href="#about" class="text-gray-800 hover:text-gray-900 transition font-medium">Sobre</a>
+                <a href="#team" class="text-gray-800 hover:text-gray-900 transition font-medium">Equipe</a>
+                <a href="#services" class="text-gray-800 hover:text-gray-900 transition font-medium">Serviços</a>
+                <a href="#portfolio" class="text-gray-800 hover:text-gray-900 transition font-medium">Trabalhos</a>
+                <a href="#contact" class="text-gray-800 hover:text-gray-900 transition font-medium">Contato</a>
             </nav>
             
             <!-- Mobile Menu Button -->
-            <button class="md:hidden" onclick="toggleMobileMenu()">
+            <button class="md:hidden text-gray-800" onclick="toggleMobileMenu()">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                 </svg>
@@ -411,20 +590,20 @@
         </div>
         
         <!-- Mobile Menu -->
-        <div id="mobileMenu" class="mobile-menu fixed top-0 left-0 w-full h-full md:hidden z-40" style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);">
-            <div class="w-full h-full p-4" style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px);">
-                <button onclick="toggleMobileMenu()" class="float-right">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div id="mobileMenu" class="mobile-menu fixed top-0 left-0 w-full h-full md:hidden z-50" style="z-index: 9999;">
+            <div class="mobile-nav-container" style="z-index: 9998;">
+                <button onclick="toggleMobileMenu()" class="absolute top-8 right-6 p-3 glass-button-mobile rounded-full transition-all duration-300" style="z-index: 10002;">
+                    <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                     </svg>
                 </button>
-                <nav class="mt-12 space-y-4">
-                    <a href="#home" class="block text-xl text-gray-700" onclick="toggleMobileMenu()">Home</a>
-                    <a href="#about" class="block text-xl text-gray-700" onclick="toggleMobileMenu()">Sobre</a>
-                    <a href="#team" class="block text-xl text-gray-700" onclick="toggleMobileMenu()">Equipe</a>
-                    <a href="#services" class="block text-xl text-gray-700" onclick="toggleMobileMenu()">Serviços</a>
-                    <a href="#portfolio" class="block text-xl text-gray-700" onclick="toggleMobileMenu()">Trabalhos</a>
-                    <a href="#contact" class="block text-xl text-gray-700" onclick="toggleMobileMenu()">Contato</a>
+                <nav class="space-y-6 text-center relative" style="z-index: 10000;">
+                    <a href="#home" class="block text-2xl text-gray-800 font-medium transition-all duration-300 hover:text-gray-600" onclick="toggleMobileMenu()" style="z-index: 10001; position: relative;">Home</a>
+                    <a href="#about" class="block text-2xl text-gray-800 font-medium transition-all duration-300 hover:text-gray-600" onclick="toggleMobileMenu()" style="z-index: 10001; position: relative;">Sobre</a>
+                    <a href="#team" class="block text-2xl text-gray-800 font-medium transition-all duration-300 hover:text-gray-600" onclick="toggleMobileMenu()" style="z-index: 10001; position: relative;">Equipe</a>
+                    <a href="#services" class="block text-2xl text-gray-800 font-medium transition-all duration-300 hover:text-gray-600" onclick="toggleMobileMenu()" style="z-index: 10001; position: relative;">Serviços</a>
+                    <a href="#portfolio" class="block text-2xl text-gray-800 font-medium transition-all duration-300 hover:text-gray-600" onclick="toggleMobileMenu()" style="z-index: 10001; position: relative;">Trabalhos</a>
+                    <a href="#contact" class="block text-2xl text-gray-800 font-medium transition-all duration-300 hover:text-gray-600" onclick="toggleMobileMenu()" style="z-index: 10001; position: relative;">Contato</a>
                 </nav>
             </div>
         </div>
@@ -514,27 +693,28 @@
 
     <!-- Hero Section -->
     <section id="home" class="min-h-screen hero-bg flex items-center relative overflow-hidden">
-        <div class="parallax absolute inset-0 opacity-10">
-            <div class="absolute top-20 left-10 w-32 h-32 bg-blue-300 rounded-full"></div>
-            <div class="absolute top-40 right-20 w-24 h-24 bg-purple-300 rounded-full"></div>
-            <div class="absolute bottom-20 left-1/3 w-40 h-40 bg-pink-300 rounded-full"></div>
-        </div>
+
         
-        <div class="container mx-auto px-4 z-10">
+        <!-- Overlay de degradê sobre toda a imagem -->
+        <div class="hero-gradient-overlay"></div>
+        
+        <div class="container mx-auto px-4 relative z-10">
             <div class="max-w-4xl">
-                <h1 class="text-4xl md:text-6xl lg:text-7xl text-gray-800 mb-6 fade-in" style="font-family: 'Manrope', sans-serif; font-weight: 200;">
-                    <span itemProp="name" style="font-family: 'Manrope', sans-serif; font-weight: 200;">Consultoria em Design</span><br>
-                    para <span class="text-gray-500" style="font-family: 'Manrope', sans-serif; font-weight: 200;">Produtos Digitais</span><br>
-                    e <span class="text-gray-500" style="font-family: 'Manrope', sans-serif; font-weight: 200;">Industriais</span>
-                </h1>
-                <p class="text-xl text-gray-600 mb-8 fade-in max-w-2xl" itemProp="description">
-                    Transformamos ideias em produtos digitais e industriais que elevam e funcionam. 
-                    <strong>Consultoria especializada em UX Design, UI Design, design de produtos industriais, prototipagem e inovação</strong> 
-                    com metodologia Design Thinking.
-                </p>
-                <button onclick="openContactModal()" class="glass-button text-gray-800 px-8 py-3 rounded-full transition-all duration-300 fade-in">
-                    Entre em contato →
-                </button>
+                <div class="fade-in">
+                    <h1 class="text-4xl md:text-6xl lg:text-7xl text-adaptive mb-6" style="font-family: 'Manrope', sans-serif; font-weight: 200;">
+                        <span itemProp="name" style="font-family: 'Manrope', sans-serif; font-weight: 200;">Consultoria em Design</span><br>
+                        para <span class="text-adaptive-secondary" style="font-family: 'Manrope', sans-serif; font-weight: 200;">Produtos Digitais</span><br>
+                        e <span class="text-adaptive-secondary" style="font-family: 'Manrope', sans-serif; font-weight: 200;">Industriais</span>
+                    </h1>
+                    <p class="text-xl text-adaptive-secondary mb-8 max-w-2xl" itemProp="description">
+                        Transformamos ideias em produtos digitais e industriais que elevam e funcionam. 
+                        <strong>Consultoria especializada em UX Design, UI Design, design de produtos industriais, prototipagem e inovação</strong> 
+                        com metodologia Design Thinking.
+                    </p>
+                    <button onclick="openContactModal()" class="glass-button text-gray-800 px-8 py-3 rounded-full transition-all duration-300">
+                        Entre em contato →
+                    </button>
+                </div>
             </div>
         </div>
     </section>
@@ -611,8 +791,8 @@
 
     <!-- Services Section -->
     <section id="services" class="py-20 hero-bg" itemScope itemType="https://schema.org/Service">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl text-gray-800 mb-12 text-center fade-in" style="font-family: 'Manrope', sans-serif; font-weight: 200;" itemProp="name">Serviços de Design e Consultoria</h2>
+        <div class="container mx-auto px-4 relative z-10">
+            <h2 class="text-3xl md:text-4xl text-adaptive mb-12 text-center fade-in" style="font-family: 'Manrope', sans-serif; font-weight: 200;" itemProp="name">Serviços de Design e Consultoria</h2>
             
             <div class="grid md:grid-cols-3 gap-8 mb-16">
                 <div class="text-center fade-in group relative">
@@ -1055,16 +1235,17 @@
             const phone = document.getElementById('phone').value;
             const message = document.getElementById('message').value;
             
-            // Create SMS content
-            const smsMessage = `Olá! Entrei em contato através do site da Manch Studios.%0D%0A%0D%0AMeu telefone: ${phone}%0D%0A%0D%0AMensagem: ${encodeURIComponent(message)}`;
-            const smsLink = `sms:+5531994341699?body=${smsMessage}`;
+            // Create email content
+            const subject = 'Novo contato via site - Manch Studios';
+            const body = `Telefone: ${phone}%0D%0A%0D%0AMensagem:%0D%0A${encodeURIComponent(message)}`;
+            const emailLink = `mailto:contato@manchstudios.com?subject=${encodeURIComponent(subject)}&body=${body}`;
             
-            // Open SMS app
-            window.location.href = smsLink;
+            // Open email client
+            window.location.href = emailLink;
             
             // Close modal and show success message
             closeContactModal();
-            alert('Obrigado pelo contato! Seu aplicativo de SMS foi aberto para enviar a mensagem.');
+            alert('Obrigado pelo contato! Seu cliente de email foi aberto para enviar a mensagem.');
         });
 
         // Carousel Functionality
