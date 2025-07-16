@@ -295,25 +295,13 @@
         .hero-bg::before {
             background-image: url('assets/t9wg24PUHk-cB8CPJay83.png');
             z-index: 2;
-            animation: layer2Animation 45s infinite;
-        }
-        
-        .hero-bg::after {
-            background-image: url('assets/ugbpUgP2mxiSwfBj2oExO.jpeg');
-            z-index: 3;
-            animation: layer3Animation 45s infinite;
+            animation: layer2Animation 30s infinite;
         }
         
         @keyframes layer2Animation {
-            0%, 28% { opacity: 0; }
-            33%, 61% { opacity: 1; }
-            66%, 100% { opacity: 0; }
-        }
-        
-        @keyframes layer3Animation {
-            0%, 61% { opacity: 0; }
-            66%, 94% { opacity: 1; }
-            99%, 100% { opacity: 0; }
+            0%, 40% { opacity: 0; }
+            50%, 90% { opacity: 1; }
+            100% { opacity: 0; }
         }
         
 
@@ -418,6 +406,7 @@
             scroll-snap-type: x mandatory;
             scroll-behavior: smooth;
             overflow-y: visible !important;
+            -webkit-overflow-scrolling: touch;
         }
         
         .carousel-item {
@@ -553,11 +542,19 @@
             @media (max-width: 768px) {
                 .carousel-container {
                     gap: 0 !important;
+                    justify-content: flex-start !important;
+                    padding-left: calc(50vw - 175px) !important;
+                    padding-right: calc(50vw - 175px) !important;
                 }
                 
                 .carousel-item {
                     margin-right: 3rem !important;
                     min-width: 350px !important;
+                    flex-shrink: 0 !important;
+                }
+                
+                .carousel-item:first-child {
+                    scroll-snap-align: center !important;
                 }
             }
         }
@@ -1251,7 +1248,8 @@
         // Carousel Functionality
         function slideCarousel(direction) {
             const carousel = document.getElementById('carousel');
-            const slideWidth = 320; // width + gap
+            const isMobile = window.innerWidth <= 768;
+            const slideWidth = isMobile ? 380 : 320; // width + gap (mobile needs more spacing)
             
             if (direction === 'left') {
                 carousel.scrollLeft -= slideWidth;
