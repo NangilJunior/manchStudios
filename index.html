@@ -299,8 +299,8 @@
         }
         
         @keyframes layer2Animation {
-            0%, 40% { opacity: 0; }
-            50%, 90% { opacity: 1; }
+            0%, 45% { opacity: 0; }
+            50%, 95% { opacity: 1; }
             100% { opacity: 0; }
         }
         
@@ -406,7 +406,6 @@
             scroll-snap-type: x mandatory;
             scroll-behavior: smooth;
             overflow-y: visible !important;
-            -webkit-overflow-scrolling: touch;
         }
         
         .carousel-item {
@@ -504,6 +503,24 @@
         
 
 
+        /* Tablet specific adjustments - 2x3 layout */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .service-card {
+                width: 320px !important;
+                max-width: 320px !important;
+                margin: 0 auto !important;
+            }
+            
+            .service-image {
+                width: 200px !important;
+                height: 200px !important;
+            }
+            
+            #services .grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+        }
+        
         @media (max-width: 768px) {
             .mobile-menu {
                 transform: translateX(-100%);
@@ -542,19 +559,11 @@
             @media (max-width: 768px) {
                 .carousel-container {
                     gap: 0 !important;
-                    justify-content: flex-start !important;
-                    padding-left: calc(50vw - 175px) !important;
-                    padding-right: calc(50vw - 175px) !important;
                 }
                 
                 .carousel-item {
                     margin-right: 3rem !important;
                     min-width: 350px !important;
-                    flex-shrink: 0 !important;
-                }
-                
-                .carousel-item:first-child {
-                    scroll-snap-align: center !important;
                 }
             }
         }
@@ -791,7 +800,8 @@
         <div class="container mx-auto px-4 relative z-10">
             <h2 class="text-3xl md:text-4xl text-adaptive mb-12 text-center fade-in" style="font-family: 'Manrope', sans-serif; font-weight: 200;" itemProp="name">Serviços de Design e Consultoria</h2>
             
-            <div class="grid md:grid-cols-3 gap-8 mb-16">
+            <!-- Grid único para melhor controle responsivo -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 gap-y-16">
                 <div class="text-center fade-in group relative">
                     <div class="relative z-10 w-64 h-64 mx-auto mb-[-125px] transition-all duration-300 group-hover:scale-110 flex items-center justify-center">
                         <img src="assets/oPTzLvBvHxUIqmjCoH8Xu.png" alt="VR" class="service-image" style="width: 250px; height: 250px; object-fit: contain;">
@@ -812,9 +822,7 @@
                     </div>
                     <h3 class="text-lg glass-card rounded-xl pt-20 pb-8 px-3 flex items-center justify-center mx-auto relative z-0 service-card" style="width: 400px; height: 170px; font-family: 'Manrope', sans-serif; font-weight: 200;">Design de Produtos Industriais</h3>
                 </div>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8">
+                
                 <div class="text-center fade-in group relative">
                     <div class="relative z-10 w-64 h-64 mx-auto mb-[-125px] transition-all duration-300 group-hover:scale-110 flex items-center justify-center">
                         <img src="assets/fkuMLh-U47dfEdpXBbD0n.png" alt="Prototipagem e testes de usabilidade" class="service-image" style="width: 250px; height: 250px; object-fit: contain;">
@@ -1248,8 +1256,7 @@
         // Carousel Functionality
         function slideCarousel(direction) {
             const carousel = document.getElementById('carousel');
-            const isMobile = window.innerWidth <= 768;
-            const slideWidth = isMobile ? 380 : 320; // width + gap (mobile needs more spacing)
+            const slideWidth = 320; // width + gap
             
             if (direction === 'left') {
                 carousel.scrollLeft -= slideWidth;
