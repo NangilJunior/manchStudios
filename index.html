@@ -503,17 +503,30 @@
         
 
 
+        /* Melhorar o crop das imagens dos cards */
+        .service-image {
+            width: 200px !important;
+            height: 200px !important;
+            object-fit: contain !important;
+            object-position: center !important;
+            border-radius: 8px !important;
+            box-shadow: none !important;
+            background: transparent !important;
+            filter: drop-shadow(0 0 0 transparent) !important;
+        }
+        
         /* Tablet specific adjustments - 2x3 layout */
         @media (min-width: 769px) and (max-width: 1024px) {
             .service-card {
                 width: 320px !important;
                 max-width: 320px !important;
+                height: 170px !important;
                 margin: 0 auto !important;
             }
             
             .service-image {
-                width: 200px !important;
-                height: 200px !important;
+                width: 180px !important;
+                height: 180px !important;
             }
             
             #services .grid {
@@ -801,47 +814,47 @@
             <h2 class="text-3xl md:text-4xl text-adaptive mb-12 text-center fade-in" style="font-family: 'Manrope', sans-serif; font-weight: 200;" itemProp="name">Serviços de Design e Consultoria</h2>
             
             <!-- Grid único para melhor controle responsivo -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 gap-y-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 gap-y-8">
                 <div class="text-center fade-in group relative">
-                    <div class="relative z-10 w-64 h-64 mx-auto mb-[-125px] transition-all duration-300 group-hover:scale-110 flex items-center justify-center">
-                        <img src="assets/oPTzLvBvHxUIqmjCoH8Xu.png" alt="VR" class="service-image" style="width: 250px; height: 250px; object-fit: contain;">
+                    <div class="relative z-10 w-52 h-52 mx-auto mb-[-110px] transition-all duration-300 group-hover:scale-110 flex items-center justify-center">
+                        <img src="assets/oPTzLvBvHxUIqmjCoH8Xu.png" alt="VR" class="service-image">
                     </div>
-                    <h3 class="text-lg glass-card rounded-xl pt-20 pb-8 px-3 flex items-center justify-center mx-auto relative z-0 service-card" style="width: 400px; height: 170px; font-family: 'Manrope', sans-serif; font-weight: 200;" itemProp="serviceType">Experiências Virtuais</h3>
+                    <h3 class="text-lg glass-card rounded-xl pt-16 pb-8 px-3 flex items-center justify-center mx-auto relative z-0 service-card" style="width: 400px; height: 170px; font-family: 'Manrope', sans-serif; font-weight: 200;" itemProp="serviceType">Experiências Virtuais</h3>
                 </div>
                 
                 <div class="text-center fade-in group relative">
-                    <div class="relative z-10 w-64 h-64 mx-auto mb-[-125px] transition-all duration-300 group-hover:scale-110 flex items-center justify-center">
-                        <img src="assets/Ehepsfb97mEQI8cxkYzk9.png" alt="UX Design e UI Design - Experiência do usuário" class="service-image" style="width: 250px; height: 250px; object-fit: contain;">
+                    <div class="relative z-10 w-52 h-52 mx-auto mb-[-110px] transition-all duration-300 group-hover:scale-110 flex items-center justify-center">
+                        <img src="assets/Ehepsfb97mEQI8cxkYzk9.png" alt="UX Design e UI Design - Experiência do usuário" class="service-image">
                     </div>
-                    <h3 class="text-lg glass-card rounded-xl pt-20 pb-8 px-3 flex items-center justify-center mx-auto relative z-0 service-card" style="width: 400px; height: 170px; font-family: 'Manrope', sans-serif; font-weight: 200;">Design de Experiência (UX Design)</h3>
+                    <h3 class="text-lg glass-card rounded-xl pt-16 pb-8 px-3 flex items-center justify-center mx-auto relative z-0 service-card" style="width: 400px; height: 170px; font-family: 'Manrope', sans-serif; font-weight: 200;">Design de Experiência (UX Design)</h3>
                 </div>
                 
                 <div class="text-center fade-in group relative">
-                    <div class="relative z-10 w-64 h-64 mx-auto mb-[-125px] transition-all duration-300 group-hover:scale-110 flex items-center justify-center">
-                        <img src="assets/HtqCAaKy-Z4CTac0cf-Mp.png" alt="Design de produtos industriais" class="service-image" style="width: 250px; height: 250px; object-fit: contain;">
+                    <div class="relative z-10 w-52 h-52 mx-auto mb-[-110px] transition-all duration-300 group-hover:scale-110 flex items-center justify-center">
+                        <img src="assets/HtqCAaKy-Z4CTac0cf-Mp.png" alt="Design de produtos industriais" class="service-image">
                     </div>
-                    <h3 class="text-lg glass-card rounded-xl pt-20 pb-8 px-3 flex items-center justify-center mx-auto relative z-0 service-card" style="width: 400px; height: 170px; font-family: 'Manrope', sans-serif; font-weight: 200;">Design de Produtos Industriais</h3>
+                    <h3 class="text-lg glass-card rounded-xl pt-16 pb-8 px-3 flex items-center justify-center mx-auto relative z-0 service-card" style="width: 400px; height: 170px; font-family: 'Manrope', sans-serif; font-weight: 200;">Design de Produtos Industriais</h3>
                 </div>
                 
                 <div class="text-center fade-in group relative">
-                    <div class="relative z-10 w-64 h-64 mx-auto mb-[-125px] transition-all duration-300 group-hover:scale-110 flex items-center justify-center">
-                        <img src="assets/fkuMLh-U47dfEdpXBbD0n.png" alt="Prototipagem e testes de usabilidade" class="service-image" style="width: 250px; height: 250px; object-fit: contain;">
+                    <div class="relative z-10 w-52 h-52 mx-auto mb-[-110px] transition-all duration-300 group-hover:scale-110 flex items-center justify-center">
+                        <img src="assets/fkuMLh-U47dfEdpXBbD0n.png" alt="Prototipagem e testes de usabilidade" class="service-image">
                     </div>
-                    <h3 class="text-lg glass-card rounded-xl pt-20 pb-8 px-3 flex items-center justify-center mx-auto relative z-0 service-card" style="width: 400px; height: 170px; font-family: 'Manrope', sans-serif; font-weight: 200;">Prototipagem e Teste</h3>
+                    <h3 class="text-lg glass-card rounded-xl pt-16 pb-8 px-3 flex items-center justify-center mx-auto relative z-0 service-card" style="width: 400px; height: 170px; font-family: 'Manrope', sans-serif; font-weight: 200;">Prototipagem e Teste</h3>
                 </div>
                 
                 <div class="text-center fade-in group relative">
-                    <div class="relative z-10 w-64 h-64 mx-auto mb-[-125px] transition-all duration-300 group-hover:scale-110 flex items-center justify-center">
-                        <img src="assets/Dfso2SxeJE6rLo-hrgKGz.png" alt="Consultoria em inovação e design thinking" class="service-image" style="width: 250px; height: 250px; object-fit: contain;">
+                    <div class="relative z-10 w-52 h-52 mx-auto mb-[-110px] transition-all duration-300 group-hover:scale-110 flex items-center justify-center">
+                        <img src="assets/Dfso2SxeJE6rLo-hrgKGz.png" alt="Consultoria em inovação e design thinking" class="service-image">
                     </div>
-                    <h3 class="text-lg glass-card rounded-xl pt-20 pb-8 px-3 flex items-center justify-center mx-auto relative z-0 service-card" style="width: 400px; height: 170px; font-family: 'Manrope', sans-serif; font-weight: 200;">Consultoria e Inovação</h3>
+                    <h3 class="text-lg glass-card rounded-xl pt-16 pb-8 px-3 flex items-center justify-center mx-auto relative z-0 service-card" style="width: 400px; height: 170px; font-family: 'Manrope', sans-serif; font-weight: 200;">Consultoria e Inovação</h3>
                 </div>
                 
                 <div class="text-center fade-in group relative">
-                    <div class="relative z-10 w-64 h-64 mx-auto mb-[-125px] transition-all duration-300 group-hover:scale-110 flex items-center justify-center">
-                        <img src="assets/tTruZfa-1ul6QWHa3kJvS.png" alt="Treinamentos e workshops de design" class="service-image" style="width: 250px; height: 250px; object-fit: contain;">
+                    <div class="relative z-10 w-52 h-52 mx-auto mb-[-110px] transition-all duration-300 group-hover:scale-110 flex items-center justify-center">
+                        <img src="assets/tTruZfa-1ul6QWHa3kJvS.png" alt="Treinamentos e workshops de design" class="service-image">
                     </div>
-                    <h3 class="text-lg glass-card rounded-xl pt-20 pb-8 px-3 flex items-center justify-center mx-auto relative z-0 service-card" style="width: 400px; height: 170px; font-family: 'Manrope', sans-serif; font-weight: 200;">Treinamentos e Workshops</h3>
+                    <h3 class="text-lg glass-card rounded-xl pt-16 pb-8 px-3 flex items-center justify-center mx-auto relative z-0 service-card" style="width: 400px; height: 170px; font-family: 'Manrope', sans-serif; font-weight: 200;">Treinamentos e Workshops</h3>
                 </div>
             </div>
         </div>
