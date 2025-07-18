@@ -221,6 +221,7 @@
     </script>
     
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@200;300;400;500;600;700;800&family=Strait:wght@400&display=swap" rel="stylesheet">
     <style>
         * {
@@ -505,8 +506,8 @@
 
         /* Melhorar o crop das imagens dos cards */
         .service-image {
-            width: 200px !important;
-            height: 200px !important;
+            width: 220px !important;
+            height: 220px !important;
             object-fit: contain !important;
             object-position: center !important;
             border-radius: 8px !important;
@@ -515,22 +516,233 @@
             filter: drop-shadow(0 0 0 transparent) !important;
         }
         
-        /* Tablet specific adjustments - 2x3 layout */
-        @media (min-width: 769px) and (max-width: 1024px) {
+        /* Forçar espaçamento vertical maior entre os cards */
+        #services .grid {
+            gap: 32px !important;
+            row-gap: 120px !important;
+            padding-bottom: 120px !important;
+        }
+        
+        /* Garantir tamanhos fixos para todos os cards */
+        .service-card {
+            flex-shrink: 0 !important;
+            flex-grow: 0 !important;
+            box-sizing: border-box !important;
+            height: 22px !important;
+            max-height: 22px !important;
+            min-height: 22px !important;
+        }
+        
+        .service-image {
+            flex-shrink: 0 !important;
+            flex-grow: 0 !important;
+            object-fit: contain !important;
+        }
+        
+        /* Tablet Portrait - configuração específica */
+        @media (min-width: 769px) and (max-width: 1024px) and (orientation: portrait) {
+            #services .grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 32px !important;
+                row-gap: 160px !important;
+                justify-items: center !important;
+                padding-bottom: 120px !important;
+            }
+            
+            /* Cards com tamanho adequado para tablet portrait */
             .service-card {
-                width: 320px !important;
-                max-width: 320px !important;
-                height: 170px !important;
+                width: 350px !important;
+                max-width: 350px !important;
+                min-width: 350px !important;
+                height: 160px !important;
                 margin: 0 auto !important;
+                font-size: 1.1rem !important;
+                line-height: 1.4 !important;
+                word-wrap: break-word !important;
+                overflow-wrap: break-word !important;
+                hyphens: auto !important;
+            }
+            
+            h3.service-card {
+                width: 350px !important;
+                max-width: 350px !important;
+                min-width: 350px !important;
+                height: 160px !important;
+                margin: 0 auto !important;
+                font-size: 1.1rem !important;
+                line-height: 1.4 !important;
+                word-wrap: break-word !important;
+                overflow-wrap: break-word !important;
+                hyphens: auto !important;
+            }
+            
+            .glass-card.service-card {
+                width: 350px !important;
+                max-width: 350px !important;
+                min-width: 350px !important;
+                height: 160px !important;
+                margin: 0 auto !important;
+                font-size: 1.1rem !important;
+                line-height: 1.4 !important;
+                word-wrap: break-word !important;
+                overflow-wrap: break-word !important;
+                hyphens: auto !important;
+            }
+            
+            /* Ícones com posicionamento correto para tablet portrait */
+            #services .grid > div .relative {
+                margin-bottom: -140px !important;
+                width: 220px !important;
+                height: 220px !important;
+            }
+            
+            .service-image {
+                width: 200px !important;
+                height: 200px !important;
+            }
+        }
+        
+        /* Tablet Landscape - configuração específica */
+        @media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
+            #services .grid {
+                grid-template-columns: repeat(3, 1fr) !important;
+                gap: 24px !important;
+                row-gap: 140px !important;
+                justify-items: center !important;
+                padding-bottom: 120px !important;
+            }
+            
+            /* Cards com tamanho adequado para tablet landscape */
+            .service-card {
+                width: 280px !important;
+                max-width: 280px !important;
+                min-width: 280px !important;
+                height: 160px !important;
+                margin: 0 auto !important;
+                font-size: 1rem !important;
+                line-height: 1.3 !important;
+                word-wrap: break-word !important;
+                overflow-wrap: break-word !important;
+                hyphens: auto !important;
+            }
+            
+            h3.service-card {
+                width: 280px !important;
+                max-width: 280px !important;
+                min-width: 280px !important;
+                height: 160px !important;
+                margin: 0 auto !important;
+                font-size: 1rem !important;
+                line-height: 1.3 !important;
+                word-wrap: break-word !important;
+                overflow-wrap: break-word !important;
+                hyphens: auto !important;
+            }
+            
+            .glass-card.service-card {
+                width: 280px !important;
+                max-width: 280px !important;
+                min-width: 280px !important;
+                height: 160px !important;
+                margin: 0 auto !important;
+                font-size: 1rem !important;
+                line-height: 1.3 !important;
+                word-wrap: break-word !important;
+                overflow-wrap: break-word !important;
+                hyphens: auto !important;
+            }
+            
+            /* Ícones com posicionamento correto para tablet landscape */
+            #services .grid > div .relative {
+                margin-bottom: -130px !important;
+                width: 200px !important;
+                height: 200px !important;
             }
             
             .service-image {
                 width: 180px !important;
                 height: 180px !important;
             }
+        }
+        
+        /* Forçar altura aumentada dos cards em todas as condições */
+        h3.service-card {
+            height: 160px !important;
+            max-height: 160px !important;
+            min-height: 160px !important;
+            line-height: 1.4 !important;
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+            width: 416px !important;
+            max-width: 416px !important;
+            min-width: 416px !important;
+            display: flex !important;
+            align-items: center !important;
+            transform: translateY(32px) !important;
+        }
+        
+        /* Seletor ainda mais específico para forçar a mudança */
+        .glass-card.service-card {
+            height: 160px !important;
+            max-height: 160px !important;
+            min-height: 160px !important;
+            line-height: 1.4 !important;
+            display: flex !important;
+            align-items: center !important;
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+            transform: translateY(32px) !important;
+        }
+        
+        @media (min-width: 769px) and (max-width: 1024px) {
+            h3.service-card {
+                height: 160px !important;
+                max-height: 160px !important;
+                min-height: 160px !important;
+                line-height: 1.4 !important;
+                display: flex !important;
+                align-items: center !important;
+                padding-top: 0 !important;
+                padding-bottom: 0 !important;
+                transform: translateY(32px) !important;
+            }
             
-            #services .grid {
-                grid-template-columns: repeat(2, 1fr) !important;
+            .glass-card.service-card {
+                height: 160px !important;
+                max-height: 160px !important;
+                min-height: 160px !important;
+                line-height: 1.4 !important;
+                display: flex !important;
+                align-items: center !important;
+                padding-top: 0 !important;
+                padding-bottom: 0 !important;
+                transform: translateY(32px) !important;
+            }
+        }
+        
+        @media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
+            h3.service-card {
+                height: 160px !important;
+                max-height: 160px !important;
+                min-height: 160px !important;
+                line-height: 1.4 !important;
+                display: flex !important;
+                align-items: center !important;
+                padding-top: 0 !important;
+                padding-bottom: 0 !important;
+                transform: translateY(32px) !important;
+            }
+            
+            .glass-card.service-card {
+                height: 160px !important;
+                max-height: 160px !important;
+                min-height: 160px !important;
+                line-height: 1.4 !important;
+                display: flex !important;
+                align-items: center !important;
+                padding-top: 0 !important;
+                padding-bottom: 0 !important;
+                transform: translateY(32px) !important;
             }
         }
         
@@ -546,19 +758,48 @@
             
             .service-card {
                 width: calc(100vw - 4rem) !important;
-                max-width: 400px !important;
+                max-width: 380px !important;
+                min-width: auto !important;
                 margin: 0 auto !important;
+                font-size: 1rem !important;
             }
             
             .service-image {
-                width: 200px !important;
-                height: 200px !important;
+                width: 180px !important;
+                height: 180px !important;
             }
             
             .glass-card {
                 width: calc(100vw - 4rem) !important;
-                max-width: 400px !important;
+                max-width: 380px !important;
+                min-width: auto !important;
                 margin: 0 auto !important;
+            }
+            
+            /* Ajuste específico para os cards dos serviços */
+            h3.service-card {
+                width: calc(100vw - 4rem) !important;
+                max-width: 380px !important;
+                min-width: auto !important;
+                height: 160px !important;
+                margin: 0 auto !important;
+                font-size: 1rem !important;
+            }
+            
+            .glass-card.service-card {
+                width: calc(100vw - 4rem) !important;
+                max-width: 380px !important;
+                min-width: auto !important;
+                margin: 0 auto !important;
+                font-size: 1rem !important;
+            }
+            
+            /* Ajuste do grid para mobile */
+            #services .grid {
+                grid-template-columns: 1fr !important;
+                gap: 20px !important;
+                row-gap: 80px !important;
+                padding: 0 1rem !important;
             }
             
             .carousel-container {
@@ -578,6 +819,61 @@
                     margin-right: 3rem !important;
                     min-width: 350px !important;
                 }
+            }
+        }
+        
+        /* CSS FINAL - Forçar altura dos cards com máxima especificidade */
+        html body section#services .glass-card.service-card {
+            height: 160px !important;
+            max-height: 160px !important;
+            min-height: 160px !important;
+            line-height: 1.4 !important;
+            display: flex !important;
+            align-items: center !important;
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+            transform: translateY(32px) !important;
+        }
+        
+        html body section#services h3.glass-card.service-card {
+            height: 160px !important;
+            max-height: 160px !important;
+            min-height: 160px !important;
+            line-height: 1.4 !important;
+            display: flex !important;
+            align-items: center !important;
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+            transform: translateY(32px) !important;
+        }
+        
+        /* Posicionamento específico para desktop */
+        @media (min-width: 1025px) {
+            #services .grid {
+                row-gap: 180px !important;
+            }
+            
+            #services .grid > div .relative {
+                margin-bottom: -135px !important;
+            }
+        }
+        
+        /* Específico para mobile - sobrescrever largura fixa */
+        @media (max-width: 768px) {
+            html body section#services .glass-card.service-card {
+                width: calc(100vw - 4rem) !important;
+                max-width: 380px !important;
+                min-width: auto !important;
+                margin: 0 auto !important;
+                font-size: 1rem !important;
+            }
+            
+            html body section#services h3.glass-card.service-card {
+                width: calc(100vw - 4rem) !important;
+                max-width: 380px !important;
+                min-width: auto !important;
+                margin: 0 auto !important;
+                font-size: 1rem !important;
             }
         }
     </style>
@@ -814,47 +1110,47 @@
             <h2 class="text-3xl md:text-4xl text-adaptive mb-12 text-center fade-in" style="font-family: 'Manrope', sans-serif; font-weight: 200;" itemProp="name">Serviços de Design e Consultoria</h2>
             
             <!-- Grid único para melhor controle responsivo -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 gap-y-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20" style="gap: 32px; row-gap: 120px; padding-bottom: 120px;">
                 <div class="text-center fade-in group relative">
-                    <div class="relative z-10 w-52 h-52 mx-auto mb-[-110px] transition-all duration-300 group-hover:scale-110 flex items-center justify-center">
+                    <div class="relative z-10 w-52 h-52 mx-auto mb-[-135px] transition-all duration-300 group-hover:scale-110 flex items-center justify-center">
                         <img src="assets/oPTzLvBvHxUIqmjCoH8Xu.png" alt="VR" class="service-image">
                     </div>
-                    <h3 class="text-lg glass-card rounded-xl pt-16 pb-8 px-3 flex items-center justify-center mx-auto relative z-0 service-card" style="width: 400px; height: 170px; font-family: 'Manrope', sans-serif; font-weight: 200;" itemProp="serviceType">Experiências Virtuais</h3>
+                    <h3 class="text-lg glass-card rounded-xl pt-2 pb-2 px-3 flex items-center justify-center mx-auto relative z-0 service-card" style="width: 416px; height: 38px; font-family: 'Manrope', sans-serif; font-weight: 200;" itemProp="serviceType">Experiências Virtuais</h3>
                 </div>
                 
                 <div class="text-center fade-in group relative">
-                    <div class="relative z-10 w-52 h-52 mx-auto mb-[-110px] transition-all duration-300 group-hover:scale-110 flex items-center justify-center">
+                    <div class="relative z-10 w-52 h-52 mx-auto mb-[-135px] transition-all duration-300 group-hover:scale-110 flex items-center justify-center">
                         <img src="assets/Ehepsfb97mEQI8cxkYzk9.png" alt="UX Design e UI Design - Experiência do usuário" class="service-image">
                     </div>
-                    <h3 class="text-lg glass-card rounded-xl pt-16 pb-8 px-3 flex items-center justify-center mx-auto relative z-0 service-card" style="width: 400px; height: 170px; font-family: 'Manrope', sans-serif; font-weight: 200;">Design de Experiência (UX Design)</h3>
+                    <h3 class="text-lg glass-card rounded-xl pt-2 pb-2 px-3 flex items-center justify-center mx-auto relative z-0 service-card" style="width: 416px; height: 38px; font-family: 'Manrope', sans-serif; font-weight: 200;">Design de Experiência (UX Design)</h3>
                 </div>
                 
                 <div class="text-center fade-in group relative">
-                    <div class="relative z-10 w-52 h-52 mx-auto mb-[-110px] transition-all duration-300 group-hover:scale-110 flex items-center justify-center">
+                    <div class="relative z-10 w-52 h-52 mx-auto mb-[-135px] transition-all duration-300 group-hover:scale-110 flex items-center justify-center">
                         <img src="assets/HtqCAaKy-Z4CTac0cf-Mp.png" alt="Design de produtos industriais" class="service-image">
                     </div>
-                    <h3 class="text-lg glass-card rounded-xl pt-16 pb-8 px-3 flex items-center justify-center mx-auto relative z-0 service-card" style="width: 400px; height: 170px; font-family: 'Manrope', sans-serif; font-weight: 200;">Design de Produtos Industriais</h3>
+                    <h3 class="text-lg glass-card rounded-xl pt-2 pb-2 px-3 flex items-center justify-center mx-auto relative z-0 service-card" style="width: 416px; height: 38px; font-family: 'Manrope', sans-serif; font-weight: 200;">Design de Produtos Industriais</h3>
                 </div>
                 
                 <div class="text-center fade-in group relative">
-                    <div class="relative z-10 w-52 h-52 mx-auto mb-[-110px] transition-all duration-300 group-hover:scale-110 flex items-center justify-center">
+                    <div class="relative z-10 w-52 h-52 mx-auto mb-[-135px] transition-all duration-300 group-hover:scale-110 flex items-center justify-center">
                         <img src="assets/fkuMLh-U47dfEdpXBbD0n.png" alt="Prototipagem e testes de usabilidade" class="service-image">
                     </div>
-                    <h3 class="text-lg glass-card rounded-xl pt-16 pb-8 px-3 flex items-center justify-center mx-auto relative z-0 service-card" style="width: 400px; height: 170px; font-family: 'Manrope', sans-serif; font-weight: 200;">Prototipagem e Teste</h3>
+                    <h3 class="text-lg glass-card rounded-xl pt-2 pb-2 px-3 flex items-center justify-center mx-auto relative z-0 service-card" style="width: 416px; height: 38px; font-family: 'Manrope', sans-serif; font-weight: 200;">Prototipagem e Teste</h3>
                 </div>
                 
                 <div class="text-center fade-in group relative">
-                    <div class="relative z-10 w-52 h-52 mx-auto mb-[-110px] transition-all duration-300 group-hover:scale-110 flex items-center justify-center">
+                    <div class="relative z-10 w-52 h-52 mx-auto mb-[-135px] transition-all duration-300 group-hover:scale-110 flex items-center justify-center">
                         <img src="assets/Dfso2SxeJE6rLo-hrgKGz.png" alt="Consultoria em inovação e design thinking" class="service-image">
                     </div>
-                    <h3 class="text-lg glass-card rounded-xl pt-16 pb-8 px-3 flex items-center justify-center mx-auto relative z-0 service-card" style="width: 400px; height: 170px; font-family: 'Manrope', sans-serif; font-weight: 200;">Consultoria e Inovação</h3>
+                    <h3 class="text-lg glass-card rounded-xl pt-2 pb-2 px-3 flex items-center justify-center mx-auto relative z-0 service-card" style="width: 416px; height: 38px; font-family: 'Manrope', sans-serif; font-weight: 200;">Consultoria e Inovação</h3>
                 </div>
                 
                 <div class="text-center fade-in group relative">
-                    <div class="relative z-10 w-52 h-52 mx-auto mb-[-110px] transition-all duration-300 group-hover:scale-110 flex items-center justify-center">
+                    <div class="relative z-10 w-52 h-52 mx-auto mb-[-135px] transition-all duration-300 group-hover:scale-110 flex items-center justify-center">
                         <img src="assets/tTruZfa-1ul6QWHa3kJvS.png" alt="Treinamentos e workshops de design" class="service-image">
                     </div>
-                    <h3 class="text-lg glass-card rounded-xl pt-16 pb-8 px-3 flex items-center justify-center mx-auto relative z-0 service-card" style="width: 400px; height: 170px; font-family: 'Manrope', sans-serif; font-weight: 200;">Treinamentos e Workshops</h3>
+                    <h3 class="text-lg glass-card rounded-xl pt-2 pb-2 px-3 flex items-center justify-center mx-auto relative z-0 service-card" style="width: 416px; height: 38px; font-family: 'Manrope', sans-serif; font-weight: 200;">Treinamentos e Workshops</h3>
                 </div>
             </div>
         </div>
@@ -1246,24 +1542,57 @@
             }
         });
 
+        // Initialize EmailJS
+        emailjs.init("YOUR_PUBLIC_KEY"); // Você precisa criar uma conta no EmailJS e substituir pela sua chave
+
         // Contact Form Submission
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
+            const submitButton = e.target.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            
+            // Show loading state
+            submitButton.textContent = 'Enviando...';
+            submitButton.disabled = true;
+            
             const phone = document.getElementById('phone').value;
             const message = document.getElementById('message').value;
             
-            // Create email content
-            const subject = 'Novo contato via site - Manch Studios';
-            const body = `Telefone: ${phone}%0D%0A%0D%0AMensagem:%0D%0A${encodeURIComponent(message)}`;
-            const emailLink = `mailto:contato@manchstudios.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+            // Prepare email parameters
+            const templateParams = {
+                from_phone: phone,
+                message: message,
+                to_email: 'nangil@gmail.com',
+                subject: 'Novo contato via site - Manch Studios'
+            };
             
-            // Open email client
-            window.location.href = emailLink;
-            
-            // Close modal and show success message
-            closeContactModal();
-            alert('Obrigado pelo contato! Seu cliente de email foi aberto para enviar a mensagem.');
+            // Send email using EmailJS
+            emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+                .then(function(response) {
+                    console.log('Email enviado com sucesso!', response.status, response.text);
+                    
+                    // Show success message
+                    alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
+                    
+                    // Reset form and close modal
+                    document.getElementById('contactForm').reset();
+                    closeContactModal();
+                    
+                }, function(error) {
+                    console.error('Erro ao enviar email:', error);
+                    
+                    // Show error message with fallback
+                    if (confirm('Ocorreu um erro ao enviar a mensagem. Deseja tentar via WhatsApp?')) {
+                        const whatsappMessage = `Olá! Gostaria de entrar em contato:%0A%0ATelefone: ${phone}%0A%0AMensagem: ${encodeURIComponent(message)}`;
+                        window.open(`https://wa.me/5531994341699?text=${whatsappMessage}`, '_blank');
+                    }
+                })
+                .finally(function() {
+                    // Reset button state
+                    submitButton.textContent = originalText;
+                    submitButton.disabled = false;
+                });
         });
 
         // Carousel Functionality
