@@ -221,7 +221,6 @@
     </script>
     
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@200;300;400;500;600;700;800&family=Strait:wght@400&display=swap" rel="stylesheet">
     <style>
         * {
@@ -1524,7 +1523,7 @@
             // Wait for animation to complete before hiding
             setTimeout(() => {
                 modal.classList.add('hidden');
-                document.body.style.overflow = 'auto';
+                document.body.style.overflow =  'auto';
                 document.getElementById('contactForm').reset();
             }, 400);
         }
@@ -1542,9 +1541,6 @@
             }
         });
 
-        // Initialize EmailJS
-        emailjs.init("YOUR_PUBLIC_KEY"); // Você precisa criar uma conta no EmailJS e substituir pela sua chave
-
         // Contact Form Submission
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -1559,40 +1555,19 @@
             const phone = document.getElementById('phone').value;
             const message = document.getElementById('message').value;
             
-            // Prepare email parameters
-            const templateParams = {
-                from_phone: phone,
-                message: message,
-                to_email: 'nangil@gmail.com',
-                subject: 'Novo contato via site - Manch Studios'
-            };
-            
-            // Send email using EmailJS
-            emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
-                .then(function(response) {
-                    console.log('Email enviado com sucesso!', response.status, response.text);
-                    
-                    // Show success message
-                    alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
-                    
-                    // Reset form and close modal
-                    document.getElementById('contactForm').reset();
-                    closeContactModal();
-                    
-                }, function(error) {
-                    console.error('Erro ao enviar email:', error);
-                    
-                    // Show error message with fallback
-                    if (confirm('Ocorreu um erro ao enviar a mensagem. Deseja tentar via WhatsApp?')) {
-                        const whatsappMessage = `Olá! Gostaria de entrar em contato:%0A%0ATelefone: ${phone}%0A%0AMensagem: ${encodeURIComponent(message)}`;
-                        window.open(`https://wa.me/5531994341699?text=${whatsappMessage}`, '_blank');
-                    }
-                })
-                .finally(function() {
-                    // Reset button state
-                    submitButton.textContent = originalText;
-                    submitButton.disabled = false;
-                });
+            // Simulated form submission (you'll need to implement actual email sending)
+            setTimeout(() => {
+                // Show success message
+                alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
+                
+                // Reset form and close modal
+                document.getElementById('contactForm').reset();
+                closeContactModal();
+                
+                // Reset button state
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+            }, 2000);
         });
 
         // Carousel Functionality
@@ -1620,8 +1595,6 @@
                 }
             });
         });
-
-        // Carousel navigation is now manual only - no auto-rotation
     </script>
 </body>
 </html>
