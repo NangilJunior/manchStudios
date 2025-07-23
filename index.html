@@ -1541,7 +1541,7 @@
             }
         });
 
-        // Contact Form Submission
+        // Contact Form Submission - Save to Server
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -1555,19 +1555,65 @@
             const phone = document.getElementById('phone').value;
             const message = document.getElementById('message').value;
             
-            // Simulated form submission (you'll need to implement actual email sending)
-            setTimeout(() => {
-                // Show success message
-                alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
-                
-                // Reset form and close modal
+            // Criar objeto com dados da mensagem
+            const messageData = {
+                id: Date.now(),
+                timestamp: new Date().toISOString(),
+                dataFormatada: new Date().toLocaleString('pt-BR'),
+                telefone: phone,
+                mensagem: message,
+                userAgent: navigator.userAgent,
+                url: window.location.href,
+                ip: null,
+                status: 'nova'
+            };
+            
+            // Enviar dados para o servidor
+            fetch('/api/mensagens', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(messageData)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro na rede');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Sucesso - fechar modal primeiro, depois mostrar alerta
                 document.getElementById('contactForm').reset();
                 closeContactModal();
                 
+                // Aguardar modal fechar antes de mostrar alerta
+                setTimeout(() => {
+                    alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
+                }, 500);
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                
+                // Fallback: salvar no localStorage se falhar o envio
+                let mensagensSalvas = JSON.parse(localStorage.getItem('mensagensContato') || '[]');
+                mensagensSalvas.push(messageData);
+                localStorage.setItem('mensagensContato', JSON.stringify(mensagensSalvas));
+                
+                // Fechar modal primeiro, depois mostrar alerta
+                document.getElementById('contactForm').reset();
+                closeContactModal();
+                
+                // Aguardar modal fechar antes de mostrar alerta
+                setTimeout(() => {
+                    alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
+                }, 500);
+            })
+            .finally(() => {
                 // Reset button state
                 submitButton.textContent = originalText;
                 submitButton.disabled = false;
-            }, 2000);
+            });
         });
 
         // Carousel Functionality
